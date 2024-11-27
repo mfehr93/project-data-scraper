@@ -150,9 +150,15 @@ function getPriorityGraph(data, newSheet) {
   var priorityCounts = [0, 0, 0, 0, 0];
   for (var i = 0; i < data.length; i++) {
     var priority = data[i][8]; // Column I
-    if (priority >= 1 && priority <= 5) {
-      priorityCounts[priority - 1]++;
+    if canConvertToFloat(priority){
+      if (priority >= 1 && priority <= 5) {
+        priorityCounts[priority - 1]++;
+      }
+      else {
+        throw new Error("A Priority value outside of the 1-5 range was found for project ".concat(data[i][3]);
+      }
     }
+    
   }
 
   newSheet.getRange('A7').setValue('Priority');
