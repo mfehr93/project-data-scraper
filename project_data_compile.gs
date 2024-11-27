@@ -68,6 +68,11 @@ function runScript() {
   }
 }
 
+function canConvertToFloat(value) {
+  const parsedValue = parseFloat(value);
+  return !isNaN(parsedValue);
+}
+
 function getAverageEstimatedProjectTime(data) {
   var sum = 0;
   for (var i = 0; i < data.length; i++) {
@@ -97,7 +102,12 @@ function getAverageActualProjectTime(data) {
 function getMedianProjectTime(data) {
   var times = [];
   for (var i = 0; i < data.length; i++) {
-    times.push(data[i][6]); // Column G
+    if canConvertToFloat(data[i][6]){
+      times.push(data[i][6]); // Column G
+    }
+    else {
+      throw new Error("Actual Labor Hours is not a number for project: \"".concat(data[i][3]).concat("\""));
+    }
   }
   times.sort(function(a, b) { return a - b; });
 
@@ -109,10 +119,6 @@ function getMedianProjectTime(data) {
   }
 }
 
-function canConvertToFloat(value) {
-  const parsedValue = parseFloat(value);
-  return !isNaN(parsedValue);
-}
 
 function getEstimatedLaborHours(data) {
   var sum = 0;
