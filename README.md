@@ -7,6 +7,9 @@ This script is fairly simple, and only requires that you have your Google sheet 
 ![example_google_sheet](./readme_photos/example_google_sheet.png)
 
 
+## [Google Sheet template](https://docs.google.com/spreadsheets/d/1kNSHkTfDl5g8BcuSDXxT_PtfF8zGW7cK0eEp75btdww/edit?usp=sharing)
+
+
 An important note is that regular expressions are used to separate the people who completed the project (column H; Repair Complete). The regex looks for the word "by", and then pulls the names that follow. That is, "By Mitch", "Completed haphazardly by Mitch", and "Done by Mitch and Brandon" all work just fine. It will encounter some trouble if you simply list the names without the word "by".
 
 
